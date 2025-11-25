@@ -15,35 +15,37 @@ export default function Projects() {
 
   const projectDetails = {
     "Employee CRUD App": {
-      description: "Manage employee records with full CRUD operations using Java Spring Boot and ReactJS.",
+      description: "Manage employees with CRUD operations.",
       github: "https://github.com/username/employee-crud-app",
-      demo: "https://employee-crud-app-demo.com"
+      demo: "#"
     },
     "JWT Login App": {
-      description: "Secure login system using JWT authentication with Spring Security.",
+      description: "JWT Authentication using Spring Security.",
       github: "https://github.com/username/jwt-login-app",
-      demo: "https://jwt-login-app-demo.com"
+      demo: "#"
     },
     "Mini E-Commerce": {
-      description: "Simple e-commerce platform with cart, checkout, and product management.",
+      description: "Full stack mini e-commerce system.",
       github: "https://github.com/username/mini-ecommerce",
-      demo: "https://mini-ecommerce-demo.com"
+      demo: "#"
     },
     "Portfolio Website": {
-      description: "My personal portfolio built with ReactJS and modern UI.",
-      github: "https://github.com/username/portfolio-website",
-      demo: "https://portfolio-demo.com"
+      description: "My portfolio built using React.",
+      github: "https://github.com/kanijamvenkatesh/portfolio-frontend",
+      demo: "https://portfolio-frontend.onrender.com"
     }
   };
 
   return (
-    <div className="section-box">
-      <h2>Portfolio</h2>
+    <div id="projects" className="section-box">
+      <h2>My Projects</h2>
+
       <div className="projects-grid">
         {projects.map((p, i) => (
           <div key={i} className="project-card">
             <h3>{p}</h3>
-            <p>{projectDetails[p]?.description || "No description"}</p>
+            <p>{projectDetails[p]?.description || "No description available"}</p>
+
             <div className="project-links">
               <a href={projectDetails[p]?.github} target="_blank" rel="noopener noreferrer">GitHub</a>
               <a href={projectDetails[p]?.demo} target="_blank" rel="noopener noreferrer">Live Demo</a>

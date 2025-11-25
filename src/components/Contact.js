@@ -12,10 +12,8 @@ export default function Contact() {
 
   const send = async () => {
     try {
-      const API_BASE_URL =
-        process.env.REACT_APP_API_BASE_URL || "http://localhost:8080";
+      const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
 
-      // FINAL CORRECT ENDPOINT FOR YOUR BACKEND
       const res = await axios.post(
         `${API_BASE_URL}/portfolio/contact`,
         form
@@ -24,8 +22,6 @@ export default function Contact() {
       if (res.status === 200) {
         setMsg("Message Sent Successfully!");
         setForm({ name: "", email: "", message: "" });
-      } else {
-        setMsg("Failed to send message.");
       }
     } catch (err) {
       console.error(err);
@@ -38,48 +34,20 @@ export default function Contact() {
       <center><h2 className="contact-header">Contact Me</h2></center>
 
       <div className="contact-container">
-        {/* LEFT */}
         <div className="contact-left">
           <p><strong>Email:</strong> kanijamvenkatesh9963@gmail.com</p>
           <p><strong>Phone:</strong> +91 9182121892</p>
           <p><strong>Location:</strong> Punganur, Andhra Pradesh</p>
         </div>
 
-        {/* RIGHT */}
         <div className="contact-right">
           <div className="contact-form">
-            <input
-              name="name"
-              placeholder="Your Name"
-              value={form.name}
-              onChange={handleChange}
-            />
-
-            <input
-              name="email"
-              placeholder="Your Email"
-              value={form.email}
-              onChange={handleChange}
-            />
-
-            <textarea
-              name="message"
-              placeholder="Your Message"
-              rows="4"
-              value={form.message}
-              onChange={handleChange}
-            ></textarea>
-
+            <input name="name" placeholder="Your Name" value={form.name} onChange={handleChange} />
+            <input name="email" placeholder="Your Email" value={form.email} onChange={handleChange} />
+            <textarea name="message" placeholder="Your Message" rows="4" value={form.message} onChange={handleChange}></textarea>
             <button onClick={send}>Send Message</button>
 
-            {msg && (
-              <p style={{
-                color: msg.includes("Successfully") ? "green" : "red",
-                marginTop: "10px"
-              }}>
-                {msg}
-              </p>
-            )}
+            {msg && <p style={{ color: msg.includes("Success") ? "green" : "red" }}>{msg}</p>}
           </div>
         </div>
       </div>
