@@ -6,22 +6,20 @@ export default function Contact() {
   const [form, setForm] = useState({ name: "", email: "", message: "" });
   const [msg, setMsg] = useState("");
 
-  // Handle input change
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  // Send message to backend
   const send = async () => {
     try {
       const API_BASE_URL =
-  process.env.REACT_APP_API_BASE_URL || "http://localhost:8080";
+        process.env.REACT_APP_API_BASE_URL || "http://localhost:8080";
 
-const res = await axios.post(
-  `${API_BASE_URL}/portfolio/contact`,
-  form
-);
-;
+      // FINAL CORRECT ENDPOINT FOR YOUR BACKEND
+      const res = await axios.post(
+        `${API_BASE_URL}/portfolio/contact`,
+        form
+      );
 
       if (res.status === 200) {
         setMsg("Message Sent Successfully!");
@@ -40,44 +38,14 @@ const res = await axios.post(
       <center><h2 className="contact-header">Contact Me</h2></center>
 
       <div className="contact-container">
-
-        {/* LEFT SIDE DETAILS */}
+        {/* LEFT */}
         <div className="contact-left">
-
-          <p><i className="fas fa-envelope"></i>
-            <strong> Email:</strong>
-            <a href="mailto:kanijamvenkatesh9963@gmail.com"> kanijamvenkatesh9963@gmail.com</a>
-          </p>
-
-          <p><i className="fas fa-phone"></i>
-            <strong> Phone:</strong> +91 9182121892
-          </p>
-
-          <p><i className="fas fa-location-dot"></i>
-            <strong> Location:</strong> Punganur, Andhra Pradesh
-          </p>
-
-          {/* SOCIAL LINKS */}
-          <div className="social-buttons" style={{ marginTop: "20px" }}>
-            <a href="https://github.com/kanijamvenkatesh" target="_blank" rel="noopener noreferrer" className="btn btn-social">
-              <i className="fab fa-github"></i> GitHub
-            </a>
-
-            <a href="https://www.linkedin.com/in/kanijamvenkatesh9963/" target="_blank" rel="noopener noreferrer" className="btn btn-social">
-              <i className="fab fa-linkedin"></i> LinkedIn
-            </a>
-
-            <a href="https://instagram.com/she_call_me_waste_pewllow" target="_blank" rel="noopener noreferrer" className="btn btn-social">
-              <i className="fab fa-instagram"></i> Instagram
-            </a>
-
-            <a href="https://www.hackerrank.com/dashboard" target="_blank" rel="noopener noreferrer" className="btn btn-social">
-              <i className="fab fa-hackerrank"></i> HackerRank
-            </a>
-          </div>
+          <p><strong>Email:</strong> kanijamvenkatesh9963@gmail.com</p>
+          <p><strong>Phone:</strong> +91 9182121892</p>
+          <p><strong>Location:</strong> Punganur, Andhra Pradesh</p>
         </div>
 
-        {/* RIGHT SIDE CONTACT FORM */}
+        {/* RIGHT */}
         <div className="contact-right">
           <div className="contact-form">
             <input
@@ -105,7 +73,10 @@ const res = await axios.post(
             <button onClick={send}>Send Message</button>
 
             {msg && (
-              <p style={{ color: msg.includes("Successfully") ? "green" : "red", marginTop: "10px" }}>
+              <p style={{
+                color: msg.includes("Successfully") ? "green" : "red",
+                marginTop: "10px"
+              }}>
                 {msg}
               </p>
             )}

@@ -6,12 +6,13 @@ export default function Projects() {
   const [projects, setProjects] = useState([]);
 
   useEffect(() => {
-    axios.get("http://localhost:8080/portfolio/projects")
+    const API = process.env.REACT_APP_API_BASE_URL;
+
+    axios.get(`${API}/portfolio/projects`)
       .then(res => setProjects(res.data))
-      .catch(err => console.error(err));
+      .catch(err => console.error("Projects API Error:", err));
   }, []);
 
-  // Project details including links
   const projectDetails = {
     "Employee CRUD App": {
       description: "Manage employee records with full CRUD operations using Java Spring Boot and ReactJS.",
@@ -42,10 +43,10 @@ export default function Projects() {
         {projects.map((p, i) => (
           <div key={i} className="project-card">
             <h3>{p}</h3>
-            <p>{projectDetails[p].description}</p>
+            <p>{projectDetails[p]?.description || "No description"}</p>
             <div className="project-links">
-              <a href={projectDetails[p].github} target="_blank" rel="noopener noreferrer">GitHub</a>
-              <a href={projectDetails[p].demo} target="_blank" rel="noopener noreferrer">Live Demo</a>
+              <a href={projectDetails[p]?.github} target="_blank" rel="noopener noreferrer">GitHub</a>
+              <a href={projectDetails[p]?.demo} target="_blank" rel="noopener noreferrer">Live Demo</a>
             </div>
           </div>
         ))}

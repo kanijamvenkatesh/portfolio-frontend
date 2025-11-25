@@ -7,12 +7,13 @@ export default function Skills() {
   const [activeSkill, setActiveSkill] = useState(null);
 
   useEffect(() => {
-    axios.get("http://localhost:8080/portfolio/skills")
+    const API = process.env.REACT_APP_API_BASE_URL;
+
+    axios.get(`${API}/portfolio/skills`)
       .then(res => setSkills(res.data))
-      .catch(err => console.error(err));
+      .catch(err => console.error("Skills API Error:", err));
   }, []);
 
-  // All your skills including Git, GitHub, Cloud Basics
   const skillDetails = {
     "HTML": "Semantic tags, Forms, Multimedia, SEO basics",
     "CSS": "Flexbox, Grid, Animations, Responsive design",
@@ -32,12 +33,11 @@ export default function Skills() {
     "Cloud Basics": "AWS EC2, S3, IAM, Cloud deployment basics"
   };
 
-  // Only the skills you want (ignore backend API skills)
   const combinedSkills = Array.from(new Set([...Object.keys(skillDetails)]));
 
   return (
     <div id="skills" className="section-box">
-     <center> <h2> My Skills</h2></center>
+      <center><h2> My Skills</h2></center>
       <div className="list-grid">
         {combinedSkills.map((s, i) => (
           <div key={i} className="skill-card">
@@ -54,3 +54,4 @@ export default function Skills() {
     </div>
   );
 }
+
