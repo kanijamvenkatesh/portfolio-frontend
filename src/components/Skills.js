@@ -7,10 +7,12 @@ export default function Skills() {
   const [activeSkill, setActiveSkill] = useState(null);
 
   useEffect(() => {
-    axios.get("http://localhost:8080/portfolio/skills")
-      .then(res => setSkills(res.data))
-      .catch(err => console.error(err));
-  }, []);
+  const API = process.env.REACT_APP_API_BASE_URL;
+
+  axios.get(`${API}/portfolio/skills`)
+    .then(res => setSkills(res.data))
+    .catch(err => console.error("Skills API Error:", err));
+}, []);
 
   // All your skills including Git, GitHub, Cloud Basics
   const skillDetails = {
