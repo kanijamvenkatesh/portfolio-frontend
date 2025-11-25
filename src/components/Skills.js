@@ -7,48 +7,50 @@ export default function Skills() {
   const [activeSkill, setActiveSkill] = useState(null);
 
   useEffect(() => {
-    const API = process.env.REACT_APP_API_BASE_URL;
-
-    axios.get(`${API}/portfolio/skills`)
+    axios.get("http://localhost:8080/portfolio/skills")
       .then(res => setSkills(res.data))
-      .catch(err => console.error("Skills API Error:", err));
+      .catch(err => console.error(err));
   }, []);
 
+  // All your skills including Git, GitHub, Cloud Basics
   const skillDetails = {
     "HTML": "Semantic tags, Forms, Multimedia, SEO basics",
     "CSS": "Flexbox, Grid, Animations, Responsive design",
     "JavaScript": "ES6+, DOM Manipulation, Event Handling",
     "ReactJS": "Components, Hooks, State, Routing",
     "Core Java": "OOP, Collections, Multithreading, Exception Handling",
-    "J2EE": "JSP, Servlets, JDBC",
+    "J2EE": "JSP, Servlets, JDBC, Enterprise components",
     "JSP": "Directives, Scripting, Expression Language",
     "Servlets": "Request/Response, Filters, Sessions",
-    "Spring Core": "IOC, Dependency Injection",
-    "Spring Boot": "REST APIs, Auto-config, Security",
-    "Microservices Architecture": "Service decomposition",
-    "API Gateway": "Routing, Security",
-    "Service Registry": "Eureka, Discovery",
-    "Git": "Branching, Merging",
-    "GitHub": "Repos, PRs",
-    "Cloud Basics": "EC2, S3, IAM"
+    "Spring Core": "IOC, Dependency Injection, Bean lifecycle",
+    "Spring Boot": "REST APIs, Auto-config, Security, Spring Data",
+    "Microservices Architecture": "Service decomposition, Communication, Fault tolerance",
+    "API Gateway": "Routing, Security, Cross-cutting concerns",
+    "Service Registry": "Service discovery, Registration, Health checks",
+    "Git": "Version control, branching, merging, resolving conflicts",
+    "GitHub": "Repositories, Pull Requests, Issues, Collaboration",
+    "Cloud Basics": "AWS EC2, S3, IAM, Cloud deployment basics"
   };
+
+  // Only the skills you want (ignore backend API skills)
+  const combinedSkills = Array.from(new Set([...Object.keys(skillDetails)]));
 
   return (
     <div id="skills" className="section-box">
-      <center><h2>My Skills</h2></center>
-
+     <center> <h2> My Skills</h2></center>
       <div className="list-grid">
-        {skills.map((s, i) => (
+        {combinedSkills.map((s, i) => (
           <div key={i} className="skill-card">
             <button onClick={() => setActiveSkill(activeSkill === s ? null : s)}>
               {s}
             </button>
 
-            {activeSkill === s && <p className="skill-details">{skillDetails[s]}</p>}
+            {activeSkill === s && (
+              <p className="skill-details">{skillDetails[s]}</p>
+            )}
           </div>
         ))}
       </div>
     </div>
   );
 }
-
