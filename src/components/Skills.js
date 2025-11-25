@@ -20,21 +20,21 @@ export default function Skills() {
     "JavaScript": "ES6+, DOM Manipulation, Event Handling",
     "ReactJS": "Components, Hooks, State, Routing",
     "Core Java": "OOP, Collections, Multithreading, Exception Handling",
-    "J2EE": "JSP, Servlets, JDBC",
+    "J2EE": "JSP, Servlets, JDBC, Enterprise components",
     "JSP": "Directives, Scripting, Expression Language",
     "Servlets": "Request/Response, Filters, Sessions",
-    "Spring Core": "IOC, Dependency Injection",
-    "Spring Boot": "REST APIs, Auto-config, Security",
-    "Microservices Architecture": "Service decomposition",
+    "Spring Core": "IOC, Dependency Injection, Bean lifecycle",
+    "Spring Boot": "REST APIs, Auto-config, Security, Spring Data",
+    "Microservices Architecture": "Service decomposition, Communication",
     "API Gateway": "Routing, Security",
-    "Service Registry": "Eureka, Discovery",
-    "Git": "Branching, Merging",
-    "GitHub": "Repos, PRs",
-    "Cloud Basics": "EC2, S3, IAM"
+    "Service Registry": "Service discovery",
+    "Git": "Version control",
+    "GitHub": "Repositories",
+    "Cloud Basics": "AWS EC2, S3, IAM"
   };
 
   return (
-    <div id="skills" className="section-box">
+    <section id="skills" className="section-box">
       <center><h2>My Skills</h2></center>
 
       <div className="list-grid">
@@ -44,11 +44,14 @@ export default function Skills() {
               {s}
             </button>
 
-            {activeSkill === s && <p className="skill-details">{skillDetails[s]}</p>}
+            {activeSkill === s && (
+              <p className="skill-details">{skillDetails[s]}</p>
+            )}
           </div>
         ))}
       </div>
-    </div>
+    </section>
   );
 }
+
 

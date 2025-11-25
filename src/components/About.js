@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import "./Section.css";
 
 export default function About() {
   const [text, setText] = useState("");
@@ -13,10 +14,10 @@ export default function About() {
   }, []);
 
   return (
-    <div id="about" className="section-box">
+    <section id="about" className="section-box">
       <center><h2>About Me</h2></center>
-      <p className="about-text">{text}</p>
-    </div>
+
+      <p>{text}</p>
+    </section>
   );
 }
-

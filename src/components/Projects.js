@@ -15,44 +15,38 @@ export default function Projects() {
 
   const projectDetails = {
     "Employee CRUD App": {
-      description: "Manage employees with CRUD operations.",
-      github: "https://github.com/username/employee-crud-app",
-      demo: "#"
+      description: "Manage employee records using Spring Boot + ReactJS",
+      github: "https://github.com/username/employee-crud-app"
     },
     "JWT Login App": {
-      description: "JWT Authentication using Spring Security.",
-      github: "https://github.com/username/jwt-login-app",
-      demo: "#"
+      description: "Secure login using JWT & Spring Security",
+      github: "https://github.com/username/jwt-login-app"
     },
     "Mini E-Commerce": {
-      description: "Full stack mini e-commerce system.",
-      github: "https://github.com/username/mini-ecommerce",
-      demo: "#"
+      description: "Simple full-stack eCommerce system",
+      github: "https://github.com/username/mini-ecommerce"
     },
     "Portfolio Website": {
-      description: "My portfolio built using React.",
-      github: "https://github.com/kanijamvenkatesh/portfolio-frontend",
-      demo: "https://portfolio-frontend.onrender.com"
+      description: "Your portfolio website",
+      github: "https://github.com/username/portfolio"
     }
   };
 
   return (
-    <div id="projects" className="section-box">
-      <h2>My Projects</h2>
+    <section id="portfolio" className="section-box">
+      <center><h2>Portfolio</h2></center>
 
       <div className="projects-grid">
         {projects.map((p, i) => (
           <div key={i} className="project-card">
             <h3>{p}</h3>
             <p>{projectDetails[p]?.description || "No description available"}</p>
-
-            <div className="project-links">
-              <a href={projectDetails[p]?.github} target="_blank" rel="noopener noreferrer">GitHub</a>
-              <a href={projectDetails[p]?.demo} target="_blank" rel="noopener noreferrer">Live Demo</a>
-            </div>
+            <a href={projectDetails[p]?.github} target="_blank" rel="noopener noreferrer">
+              GitHub
+            </a>
           </div>
         ))}
       </div>
-    </div>
+    </section>
   );
 }
